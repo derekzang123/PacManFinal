@@ -1,8 +1,8 @@
 public class MazeTile {
   
   float x,y;
-  final int width_ = 8;
-  final int height_ = 8;
+  int width_ = 8;
+  int height_ = 8;
   
   public MazeTile () {}
   
