@@ -23,6 +23,7 @@ public class Fruit {
     randFruit.add(cherry);
     randFruit.add(apple);
     randFruit.add(orange);
+    image(randFruit.get((int)(Math.random() * 3) + 4), )
     
   }
 
