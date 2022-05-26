@@ -14,7 +14,6 @@ public class MazeTile {
   }
   
   void display () {
-    fill(0);
     rect(x,y,width_,height_);
   }
   
