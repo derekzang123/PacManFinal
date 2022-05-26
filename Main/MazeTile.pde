@@ -1,6 +1,6 @@
 public class MazeTile {
   
-  float x,y;
+  double x,y;
   int width_ = 8;
   int height_ = 8;
   
@@ -14,7 +14,7 @@ public class MazeTile {
   }
   
   void display () {
-    rect(x,y,width_,height_);
+    rect((float)x,(float)y,width_,height_);
   }
   
 }
