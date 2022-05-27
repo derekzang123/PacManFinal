@@ -11,6 +11,8 @@ public class Pellet {
   
   void display () {
     //draw pellet
+    square (8 * posX + 3, 8 * posY + 3, 2);
+    fill(255, 153, 153);
   }
   
   void clear () {
