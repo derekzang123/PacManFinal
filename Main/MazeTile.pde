@@ -1,20 +1,17 @@
 public class MazeTile {
   
-  double x,y;
-  int width_ = 8;
-  int height_ = 8;
+  final int sqauresize = 8;
+  int boardX, boardY;
   
   public MazeTile () {}
   
-  public MazeTile (float x_, float y_, int w, int h) {
-    x = x_;
-    y = y_;
-    width_ = w;
-    height_ = h;
+  public MazeTile (int boardX_, int boardY_) {
+    boardX = boardX_;
+    boardY = boardY_;
   }
   
   void display () {
-    rect((float)x,(float)y,width_,height_);
+    square(boardX*squaresize, boardY*squaresize, squaresize);
   }
   
 }

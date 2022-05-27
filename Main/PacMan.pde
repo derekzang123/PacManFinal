@@ -1,6 +1,7 @@
 public class PacMan implements Entity {
 
   double x,y;
+  MazeTile 
   int counter;
   int pelletsEaten;
   double dx,dy;
@@ -20,6 +21,7 @@ public class PacMan implements Entity {
   void moveUp() {
   }
   void moveDown() {
+    
   }
   void moveLeft() {
   }
