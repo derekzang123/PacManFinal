@@ -1,4 +1,11 @@
 public class PacMan implements Entity {
+
+  double x,y;
+  int counter;
+  int pelletsEaten;
+  double dx,dy;
+  String direction;
+  boolean isEnergized;
   
   int getX() {
   }
@@ -21,6 +28,7 @@ public class PacMan implements Entity {
   void respawn() {
   }
   void display() {
+    //draw PacMan sprite
   }
   void isFacingWall() {
   }
