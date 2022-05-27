@@ -1,12 +1,13 @@
 public class Fruit {
   
-  double x,y;
+  MazeTile position;
+  int posX;
+  int posY
   
   public Fruit () {}
   
-  public Fruit (float x_, float y_) {
-    x = x_;
-    y = y_;
+  public Fruit (posX_, posY_) {
+    position = new MazeTile(posX_,posY_);
   }
   
   void strawberry () {
