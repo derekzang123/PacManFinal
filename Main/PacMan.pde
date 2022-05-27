@@ -10,7 +10,13 @@ public class PacMan implements Entity {
   }
   void setDirection() {
   }
-  void move() {
+  void moveUp() {
+  }
+  void moveDown() {
+  }
+  void moveLeft() {
+  }
+  void moveRight() {
   }
   void respawn() {
   }
