@@ -2,9 +2,7 @@ public class MazeTile {
   
   final int sqauresize = 8;
   int boardX, boardY;
-  
-  public MazeTile () {}
-  
+    
   public MazeTile (int boardX_, int boardY_) {
     boardX = boardX_;
     boardY = boardY_;

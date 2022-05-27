@@ -3,11 +3,11 @@ public class Fruit {
   MazeTile position;
   int posX;
   int posY
-  
-  public Fruit () {}
-  
+    
   public Fruit (posX_, posY_) {
-    position = new MazeTile(posX_,posY_);
+    posX = posX_;
+    posY = posY_;
+    position = new MazeTile(posX,posY);
   }
   
   void strawberry () {
