@@ -10,7 +10,7 @@ PacMan player;
   }
 
   void setup() {
-    size(616, 792);
+    size(308, 396);
     keyboardInput = new Controller();
     player = new PacMan();
   }
