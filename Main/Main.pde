@@ -9,24 +9,26 @@ Controller keyboardInput;
   }
 
   void setup() {
-    size(224, 288);
+    size(616, 792);
     keyboardInput = new Controller();
   }
 
   //Visualize which keys are being held down...
   void draw() {
-    background(255);
+    background(0);
 
-    //check if the button P1_LEFT is being pressed:
     if (keyboardInput.isPressed(Controller.P1_LEFT)) {
-      rect(10, 10, 10, 10);
+      //move pacman left
     }
-    //check if the button P1_RIGHT is being pressed:
     if (keyboardInput.isPressed(Controller.P1_RIGHT)) {
-      rect(30, 10, 10, 10);
+      //move pacman right
     }
-    fill(0);
-    text("Try pressing one or more\n of: WASD keys", 10, 50);
+    if (keyboardInput.isPressed(Controller.P1_UP)) {
+      //move pacman up
+    }
+    if (keyboardInput.isPressed(Controller.P1_DOWN)) {
+      //move pacman down
+    }
   }
 
 

@@ -11,12 +11,11 @@ public class Pellet {
   
   void display () {
     //draw pellet
-    square (8 * posX + 3, 8 * posY + 3, 2);
+    square (22 * posX + 9, 22 * posY + 9, 4);
     fill(255, 153, 153);
   }
   
   void clear () {
-    //clear pellet when eaten
     fill(0);
   }
   
