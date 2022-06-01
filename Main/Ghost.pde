@@ -26,4 +26,4 @@ public class Ghost {
   }
   void isFacingWall() {
   }
-{
+}

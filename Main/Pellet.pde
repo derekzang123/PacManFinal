@@ -4,8 +4,8 @@ public class Pellet {
   int posX,posY;
   
   public Pellet (int posX_, int posY_) {
-    posX = posX_
-    posY = posY_
+    posX = posX_;
+    posY = posY_;
     position = new MazeTile(posX,posY);
   }
   

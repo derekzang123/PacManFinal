@@ -1,5 +1,10 @@
 public class PacMan implements Entity {
-
+  
+  PImage spriteDefault;
+  PImage spriteRight;
+  PImage spriteLeft;
+  PImage spriteUp;
+  PImage spriteDown;
   MazeTile startPos;
   double x,y;
   int counter;
@@ -16,12 +21,12 @@ public class PacMan implements Entity {
     return y;
   }
   
-  void setX (x_) {
-    x = x_
+  void setX (int x_) {
+    x = x_;
   }
   
-  void setY (y_) {
-    y = y_
+  void setY (int y_) {
+    y = y_;
   }
   
   void setDirection (String direction_) {
