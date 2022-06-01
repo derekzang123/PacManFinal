@@ -12,6 +12,7 @@ public class PacMan implements Entity {
   double dx,dy = 4;
   String direction;
   boolean isEnergized;
+  int lives = 3;
   
   int getX() {
     return x;
@@ -50,11 +51,16 @@ public class PacMan implements Entity {
   }
   
   void respawn() {
+    lives = 3;
     
   }
   
   void display() {
-    //draw PacMan sprite
+    spriteDefault = loadImage("pacman.png");
+    spriteRight = loadImage("pacmanRight.gif");
+    spriteLeft = loadImage("pacmanLeft.gif");
+    spriteUp = loadImage("pacmanUp.gif");
+    spriteDown = loadImage("pacmanDown.gif");
   }
   
   void isFacingWall() {
