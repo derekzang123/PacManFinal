@@ -17,6 +17,7 @@ public class Pellet {
   
   void clear () {
     //clear pellet when eaten
+    fill(0);
   }
   
 }
