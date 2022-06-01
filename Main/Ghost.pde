@@ -1,6 +1,7 @@
 /*
 public class Ghost {
   
+  int x,y
   
   int getX() {
   }
@@ -24,8 +25,6 @@ public class Ghost {
   }
   void display() {
     //draw PacMan sprite
-  }
-  void isFacingWall() {
   }
 }
 */

@@ -1,4 +1,5 @@
 Controller keyboardInput;
+PacMan player;
 
   void keyPressed() {
     keyboardInput.press(keyCode);
@@ -11,23 +12,28 @@ Controller keyboardInput;
   void setup() {
     size(616, 792);
     keyboardInput = new Controller();
+    player = new PacMan();
   }
 
   //Visualize which keys are being held down...
   void draw() {
     background(0);
-
+    player.display();
     if (keyboardInput.isPressed(Controller.P1_LEFT)) {
-      //move pacman left
+      player.moveLeft();
+      player.displayLeft();
     }
     if (keyboardInput.isPressed(Controller.P1_RIGHT)) {
-      //move pacman right
+      player.moveRight();
+      player.displayRight();
     }
     if (keyboardInput.isPressed(Controller.P1_UP)) {
-      //move pacman up
+      player.displayUp();
+      player.moveUp();
     }
     if (keyboardInput.isPressed(Controller.P1_DOWN)) {
-      //move pacman down
+      player.displayDown();
+      player.moveDown();
     }
   }
 

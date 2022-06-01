@@ -6,10 +6,12 @@ public class PacMan implements Entity {
   PImage spriteUp;
   PImage spriteDown;
   MazeTile startPos;
-  int x,y;
+  //DEFAULT VALS FOR TESTING
+  int x,y = 100;
   int counter;
   int pelletsEaten;
-  double dx,dy = 4;
+  double dx = 3;
+  double dy = 3;
   String direction;
   boolean isEnergized;
   int lives = 3;
@@ -35,11 +37,11 @@ public class PacMan implements Entity {
   }
   
   void moveUp () {
-    y += dy;
+    y -= dy;
   }
   
   void moveDown() {
-    y -= dy;
+    y += dy;
   }
   
   void moveLeft() {
