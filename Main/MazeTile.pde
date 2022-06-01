@@ -1,6 +1,6 @@
 public class MazeTile {
   
-  final int sqauresize = 8;
+  final int squaresize = 8;
   int boardX, boardY;
     
   public MazeTile (int boardX_, int boardY_) {

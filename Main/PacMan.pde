@@ -6,7 +6,7 @@ public class PacMan implements Entity {
   PImage spriteUp;
   PImage spriteDown;
   MazeTile startPos;
-  double x,y;
+  int x,y;
   int counter;
   int pelletsEaten;
   double dx,dy = 4;

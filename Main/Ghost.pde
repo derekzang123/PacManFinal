@@ -1,3 +1,4 @@
+/*
 public class Ghost {
   
   
@@ -27,3 +28,4 @@ public class Ghost {
   void isFacingWall() {
   }
 }
+*/
