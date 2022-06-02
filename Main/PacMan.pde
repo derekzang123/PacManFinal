@@ -1,38 +1,53 @@
 public class PacMan implements Entity {
   
-  PImage spriteDefault;
-  PImage spriteRight;
-  PImage spriteLeft;
-  PImage spriteUp;
-  PImage spriteDown;
-  MazeTile startPos;
-  //DEFAULT VALS FOR TESTING
-  int x,y = 100;
-  int counter;
-  int pelletsEaten;
-  double dx = 3;
-  double dy = 3;
-  String direction;
-  boolean isEnergized;
-  int lives = 3;
+  float startX = 30;
+  float startY = 30;
+  float x,y;
+  float dx,dy;
+  float mouthOpen, mouthOpenMax, mouthStep;
+  boolean isMouthOpen = false;;
+  boolean isDead = false;
+  boolean isEnergized = false;
+  int direction;
+  Controller keyBoardInput;
   
-  int getX() {
+  PacMan () {
+    respawn();
+  }
+  
+  void respawn () {
+    x = startX;
+    y = startY;
+    mouthOpen = 0;
+    mouthOpenMax = 0.4;
+    mouthStep = 0.1;
+    isEnergized = false;
+    isDead = false;
+  }
+  
+  void die () {
+    isDead = true;
+    mouthOpenMax = TWO_PI;
+    mouthStep = 0.1;
+  }
+  
+  float getX() {
     return x;
   }
   
-  int getY() {
+  float getY() {
     return y;
   }
   
-  void setY (int y_) {
+  void setY (float y_) {
     y = y_;
   }
   
-  void setX (int x_) {
+  void setX (float x_) {
     x = x_;
   }
   
-  void setDirection (String direction_) {
+  void setDirection (int direction_) {
     direction = direction_;
   }
   
@@ -52,34 +67,57 @@ public class PacMan implements Entity {
     x += dx;
   }
   
-  void display() {
-    spriteDefault = loadImage("pacman.png");
-    image(spriteDefault,x,y);
+  void draw () {
+    simulate();
+    render();
   }
   
-  void displayRight () {
-    spriteRight = loadImage("pacmanRight.gif");
-    image(spriteRight,x,y);
+  void simulate () {
+    if (mouthOpen > PI) {
+      reset();
+    }
+    if (isDead) {
+      animateMouth();
+      return;
+    }
+    float px=x,py=y;
+    keyBoardInput = new Controller();
+    if (keyboardInput.isPressed(Controller.P1_RIGHT)) {
+      direction = 0;
+      moveRight();
+    }
+    //check if the button P1_RIGHT is being pressed:
+    if (keyboardInput.isPressed(Controller.P1_DOWN)) {
+      direction = 1;
+      moveDown();
+    }
+    if (keyboardInput.isPressed(Controller.P1_LEFT)) {
+      direction = 2;
+      moveLeft();
+    }
+    //check if the button P1_RIGHT is being pressed:
+    if (keyboardInput.isPressed(Controller.P1_UP)) {
+      direction = 3;
+      moveUp();
+    }
+    if (GameBoard.isWall(x,y)) {
+      x = px;
+      y = py;
+    } else {
+      animateMouth();
+      GameBoard.eatDotAt(x,y);
+    }
   }
   
-  void displayLeft () {
-    spriteLeft = loadImage("pacmanLeft.gif");
-    image(spriteLeft,x,y);
-  }
-  
-  void displayUp () {
-    spriteUp = loadImage("pacmanUp.gif");    
-    image(spriteUp,x,y);
-  }
-  
-  void displayDown () {
-   spriteDown = loadImage("pacmanDown.gif");
-   image(spriteDown,x,y);
-  }
-  
-  void respawn () {
-    lives = 3;
-    //paint default image in starting spot
+  void animateMouth () {
+    if (isMouthOpen) {
+      mouthOpen += mouthStep;
+    } else {
+      mouthOpen -= mouthStep;
+    }
+    if (mouthOpen > mouthOpenMax || mouthOpenMax < 0) {
+      isMouthOpen = !isMouthOpen;
+    }
   }
   
   boolean hasEnergizer () {
@@ -90,7 +128,55 @@ public class PacMan implements Entity {
     isEnergized = true;
   }
   
-  int getPelletsEaten () {
-    return pelletsEaten;
+  void render () {
+    pushMatrix();
+    translate(x,y);
+    rotate(HALF_PI * direction);
+    stroke(0);
+    ellipse(0,0,22,22);
+    fill(255,233,0);
+    arc(0,0,22,22,-mouthOpen,mouthOpen);
+    popMatrix();
   }
 }
+
+ /**************CONTROLLER TAB************/
+  class Controller {
+    static final int P1_RIGHT = 0;
+    static final int P1_DOWN = 1;
+    static final int P1_LEFT = 2;
+    static final int P1_UP = 3;
+    boolean [] inputs;
+
+    public Controller() {
+      inputs = new boolean[4];//4 valid buttons
+    }
+
+    /**@param code: a valid constant e.g. P1_LEFT
+    */
+    boolean isPressed(int code) {
+      return inputs[code];
+    }
+
+    void press(int code) {
+      println(code);
+      if(code == 'A')
+      inputs[P1_LEFT] = true;
+      if(code == 'D')
+      inputs[P1_RIGHT] = true;
+      if(code =='W')
+      inputs[P1_UP] = true;
+      if(code == 'S')
+      inputs[P1_DOWN] = true;
+    }
+    void release(int code) {
+      if(code == 'A')
+      inputs[P1_LEFT] = false;
+      if(code == 'D')
+      inputs[P1_RIGHT] = false;
+      if(code =='W')
+      inputs[P1_UP] = false;
+      if(code == 'S')
+      inputs[P1_DOWN] = false;
+    }
+  }
