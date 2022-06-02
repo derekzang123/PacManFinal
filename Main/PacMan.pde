@@ -145,14 +145,14 @@ public class PacMan implements Entity {
     stroke(0);
     fill(255,233,0);
     ellipse(0,0,22,22);
-    fill(255,233,0);
+    fill(0);
     arc(0,0,22,22,-mouthOpen,mouthOpen);
     popMatrix();
   }
   
   void onKeyPressed() {
     if ( key == CODED ) {
-      if ( keyCode == 'W' ) {
+      if ( keyCode == RIGHT ) {
         direction = 0;
       }
       if ( keyCode == DOWN )  {

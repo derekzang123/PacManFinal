@@ -7,6 +7,7 @@ static int[] decodeX = {20, 0, -20, 0, 0};
 static int[] decodeY = {20, 0, -20, 0, 0};
 
 
+
 void setup() {
   size(601, 601);
   grid = new GameBoard();
