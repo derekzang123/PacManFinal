@@ -3,7 +3,7 @@ public class PacMan implements Entity {
   float startX = 50;
   float startY = 50;
   float x,y;
-  float dx = 3,dy = 3;
+  float dx = 1.5,dy = 1.5;
   float mouthOpen, mouthOpenMax, mouthStep;
   boolean isMouthOpen = true;
   boolean isDead = false;
@@ -131,7 +131,7 @@ public class PacMan implements Entity {
   
   void getEnergizer () {
     isEnergized = true;
-    energizerCountdown = 500;
+    energizerCountdown = 100;
     for (int i=0; i<ghosts.length; i ++) {
       ghosts[i].Afraid();
     }

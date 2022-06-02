@@ -3,7 +3,7 @@ public class Ghost implements Entity {
   int type;
   float x, y, targetX, targetY;
   float prevGhostX, prevGhostY, prevTargetX, prevTargetY;
-  float dx = 3, dy = 3;
+  float dx = 1.5, dy = 1.5;
   int direction;
   boolean isScared;
   boolean isDead;
