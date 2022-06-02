@@ -80,7 +80,7 @@ public class Ghost implements Entity {
     }
   }
 
-  void draw () {
+  void display () {
     simulate();
     render();
     if (! isDead) {

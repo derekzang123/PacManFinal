@@ -11,5 +11,6 @@ interface Entity {
   void moveRight();
   void simulate();
   void render();
+  void display ();
   
 }

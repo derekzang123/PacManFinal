@@ -16,4 +16,6 @@ public class GameBoard {
     }
     data[5][10] = "3";
   }
+  
+  void display ()
 }

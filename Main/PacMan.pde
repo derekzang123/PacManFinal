@@ -67,7 +67,7 @@ public class PacMan implements Entity {
     x += dx;
   }
   
-  void draw () {
+  void display () {
     simulate();
     render();
   }
