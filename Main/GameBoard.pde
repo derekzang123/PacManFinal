@@ -62,7 +62,7 @@ public class GameBoard {
   void eatDotAt (float ix, float iy) {
     int i = int (ix/20);
     int j = int (iy/20);
-    if (data[j][i].equals("3")) {
+    if (data[j][i]. equals(  "3")) {
       player.getEnergizer();
     }
     data[j][i] = "0";
