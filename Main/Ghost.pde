@@ -1,16 +1,18 @@
 public class Ghost implements Entity{
   
-  PImage sprite;
-  PImage spriteFrightened;
-  int x,y;
-  int dx,dy;
+  int ghostType;
+  float x,y;
+  float dx,dy,pdx,pdy,pgx,pgy;
   int mode;
-  String direction;
+  int direction;
+  boolean isScared;
+  boolean isDead;
+  int trapTimer;
   
-  int getX () {
+  float getX () {
     return x;
   }
-  int getY () {
+  float getY () {
     return y;
   }
   
@@ -20,7 +22,7 @@ public class Ghost implements Entity{
   void setY (int y_) {
     y = y_;
   }
-  void setDirection (String dir) {
+  void setDirection (int dir) {
     direction = dir;
   }
   
@@ -40,13 +42,7 @@ public class Ghost implements Entity{
     x += dx;
   }
   
-  void respawn() {
-  }
   
-  void display () {
-    sprite = loadImage("ghost.png");
-    image(sprite,x,y);
-  }
   
    boolean isFacingWall (double x, double y, String dir) {
      

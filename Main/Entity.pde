@@ -9,7 +9,6 @@ interface Entity {
   void moveDown();
   void moveLeft();
   void moveRight();
-  void respawn();
   void simulate();
   void render();
   

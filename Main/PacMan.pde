@@ -74,7 +74,7 @@ public class PacMan implements Entity {
   
   void simulate () {
     if (mouthOpen > PI) {
-      reset();
+      respawn();
     }
     if (isDead) {
       animateMouth();
