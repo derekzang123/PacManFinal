@@ -3,35 +3,57 @@ static PacMan player;
 static Ghost[] ghosts;
 static boolean toCorners = false;
 static int timerCorners;
-static int[] decodeX = {20,0,-20,0,0};
-static int[] decodeY = {20,0,-20,0,0};
+static int[] decodeX = {20, 0, -20, 0, 0};
+static int[] decodeY = {20, 0, -20, 0, 0};
 
 
+void setup() {
+  size(601, 601);
+  grid = new GameBoard();
+  grid.loadGameBoard();
+  player = new PacMan();
+  ghosts = new Ghost[5];
+  for (int i=0; i<ghosts.length; i++) {
+    ghosts[i] = new Ghost(i);
+  }
+  timerCorners = millis() + 10000;
+}
 
-  void setup() {
-    size(601,601);
-    grid = new GameBoard();
-    grid.loadGameBoard();
-    player = new PacMan();
-    ghosts = new Ghost[5];
-    for (int i = 0; i < 5; i ++) {
-      ghosts[i] = new Ghost(i);
-    }
+void draw() {
+  background(0);
+  grid.draw();
+  player.draw();
+  for (int i=0; i<ghosts.length; i++) {
+    ghosts[i].draw ();
+  }
+  if ( millis() > timerCorners) {
     timerCorners = millis() + 10000;
+    toCorners = !toCorners;
   }
+}
 
-  //Visualize which keys are being held down...
-  void draw() {
-    background(0);
-    player.display();
-    grid.display();
-    for (int i = 0; i < 5; i++) {
-      ghosts[i].display();
-    }
-    if (millis() > timerCorners) {
-      toCorners = !toCorners;
-    }
+void keyPressed() {
+  grid.onKeyPressed();
+  player.onKeyPressed();
+  if ( key == ' ') { 
+    toCorners = !toCorners;
   }
+  if ( key == 'e' )
+    player.die();
+  if ( key == 'r' )
+    gameReset();
+}
 
+void mousePressed() {
+  grid.editGameBoard(mouseX, mouseY);
+}
 
-  
+void gameReset() {
+  player.die();
+  ghostsReset();
+}
+
+void ghostsReset() {
+  for (int i=0; i<ghosts.length; i++)
+    ghosts[i] = new Ghost (i);
+}

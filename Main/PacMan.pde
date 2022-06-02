@@ -3,13 +3,13 @@ public class PacMan implements Entity {
   float startX = 30;
   float startY = 30;
   float x,y;
-  float dx,dy;
+  float dx = 3,dy = 3;
   float mouthOpen, mouthOpenMax, mouthStep;
-  boolean isMouthOpen = false;;
+  boolean isMouthOpen = true;
   boolean isDead = false;
   boolean isEnergized = false;
+  int energizerCountdown;
   int direction;
-  Controller keyboardInput;
   
   PacMan () {
     respawn();
@@ -18,11 +18,13 @@ public class PacMan implements Entity {
   void respawn () {
     x = startX;
     y = startY;
+    direction = 0;
     mouthOpen = 0;
     mouthOpenMax = 0.4;
     mouthStep = 0.1;
     isEnergized = false;
     isDead = false;
+    energizerCountdown = 0;
   }
   
   void die () {
@@ -67,7 +69,7 @@ public class PacMan implements Entity {
     x += dx;
   }
   
-  void display () {
+  void draw () {
     simulate();
     render();
   }
@@ -81,23 +83,18 @@ public class PacMan implements Entity {
       return;
     }
     float px=x,py=y;
-    keyboardInput = new Controller();
-    if (keyboardInput.isPressed(Controller.P1_RIGHT)) {
-      direction = 0;
+    if (direction == 0) {
       moveRight();
     }
     //check if the button P1_RIGHT is being pressed:
-    if (keyboardInput.isPressed(Controller.P1_DOWN)) {
-      direction = 1;
+    if (direction == 1) {
       moveDown();
     }
-    if (keyboardInput.isPressed(Controller.P1_LEFT)) {
-      direction = 2;
+    if (direction == 2) {
       moveLeft();
     }
     //check if the button P1_RIGHT is being pressed:
-    if (keyboardInput.isPressed(Controller.P1_UP)) {
-      direction = 3;
+    if (direction == 3) {
       moveUp();
     }
     if (grid.isWall(x,y)) {
@@ -106,6 +103,15 @@ public class PacMan implements Entity {
     } else {
       animateMouth();
       grid.eatDotAt(x,y);
+    }
+    if (energizerCountdown > 0) {
+      energizerCountdown --;
+    }
+    if (energizerCountdown == 0) {
+      isEnergized = false;
+      for (int i = 0; i < ghosts.length; i ++) {
+        ghosts[i].notAfraid();
+      }
     }
   }
   
@@ -126,6 +132,10 @@ public class PacMan implements Entity {
   
   void getEnergizer () {
     isEnergized = true;
+    energizerCountdown = 500;
+    for (int i = 0; i < ghosts.length; i ++) {
+      ghosts[i].Afraid();
+    }
   }
   
   void render () {
@@ -133,58 +143,29 @@ public class PacMan implements Entity {
     translate(x,y);
     rotate(HALF_PI * direction);
     stroke(0);
+    fill(255,233,0);
     ellipse(0,0,22,22);
     fill(255,233,0);
     arc(0,0,22,22,-mouthOpen,mouthOpen);
     popMatrix();
   }
   
-  void keyPressed() {
-    keyboardInput.press(keyCode);
-  }
-
-  void keyReleased() {
-    keyboardInput.release(keyCode);
+  void onKeyPressed() {
+    if ( key == CODED ) {
+      if ( keyCode == 'W' ) {
+        direction = 0;
+      }
+      if ( keyCode == DOWN )  {
+        direction = 1;
+      }
+      if ( keyCode == LEFT ) {
+        direction = 2;
+      }
+      if ( keyCode == UP ) {
+        direction = 3;
+      }
+    }
   }
 }
 
- /**************CONTROLLER TAB************/
-  class Controller {
-    static final int P1_RIGHT = 0;
-    static final int P1_DOWN = 1;
-    static final int P1_LEFT = 2;
-    static final int P1_UP = 3;
-    boolean [] inputs;
-
-    public Controller() {
-      inputs = new boolean[4];//4 valid buttons
-    }
-
-    /**@param code: a valid constant e.g. P1_LEFT
-    */
-    boolean isPressed(int code) {
-      return inputs[code];
-    }
-
-    void press(int code) {
-      println(code);
-      if(code == 'A')
-      inputs[P1_LEFT] = true;
-      if(code == 'D')
-      inputs[P1_RIGHT] = true;
-      if(code =='W')
-      inputs[P1_UP] = true;
-      if(code == 'S')
-      inputs[P1_DOWN] = true;
-    }
-    void release(int code) {
-      if(code == 'A')
-      inputs[P1_LEFT] = false;
-      if(code == 'D')
-      inputs[P1_RIGHT] = false;
-      if(code =='W')
-      inputs[P1_UP] = false;
-      if(code == 'S')
-      inputs[P1_DOWN] = false;
-    }
-  }
+ 
