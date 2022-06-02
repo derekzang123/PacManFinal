@@ -220,7 +220,7 @@ public class Ghost implements Entity {
       rect(-11,-1,22,11) 
       arc(0,0,22,22,PI,TWO_PI);
       for (int i = 0; i < 4; i ++) {
-        arc(-7 + 5i, 10, 5, 5, 0, PI);
+        arc(-7 + 5 * i, 10, 5, 5, 0, PI);
       }
     }
     fill(255);
