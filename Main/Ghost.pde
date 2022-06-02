@@ -184,7 +184,28 @@ public class Ghost implements Entity {
         ghostY = 0;
       }
       if (isDead || isScared) {
-        
+        ghostX = 310;
+        ghostY = 310;
+        if (isDead && x == ghostX && y == ghostY) {
+          isDead = false;
+        }
+        prevGhostX = ghostX;
+        prevGhostY = ghostY;
+        float best = -1;
+        int res = 5;
+        for (int i = 0; i < 4; i ++) {
+          if (i != (distance + 2)%4 && !GameBoard.isWall(x + decodeX[i], y + decodeY[i])) {
+            float newDistance = dist(x + decodeX[i], y + decodeY[i], ghostX, ghostY);
+            if (newDistance < best) {
+              best = newDistance;
+              res = i;
+            }
+          }
+        }
+        direction = res;
+        targetX = x + decodeX[direction];
+        targetY = y +decodeY[direction];
+        return;
       }
     }
   }
