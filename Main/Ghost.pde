@@ -167,6 +167,25 @@ public class Ghost implements Entity {
         ghostY = int(2 * mPlayerX - GameBoard.ghosts[0].y);
         //offset Red's movements by a bit
       }
+     //-----ORANGE-----
+     if (type == 3) {
+       if (dist(player.x,player.y,x,y) < 160) {
+         ghostX = 0;
+         ghostY = height;
+       }
+     }
+    } else {
+      ghostX = width;
+      ghostY = height;
+      if (type == 1 || type == 3) {
+        ghostX = 0;
+      }
+      if (type == 1 || type == 0) {
+        ghostY = 0;
+      }
+      if (isDead || isScared) {
+        
+      }
     }
   }
 }
