@@ -4,7 +4,6 @@ public class Ghost implements Entity {
   float x, y, targetX, targetY;
   float prevGhostX, prevGhostY, prevTargetX, prevTargetY;
   float dx = 3, dy = 3;
-  int mode;
   int direction;
   boolean isScared;
   boolean isDead;
@@ -71,7 +70,7 @@ public class Ghost implements Entity {
   }
 
   void Afraid () {
-    if (! isDead) {
+    if (!isDead) {
       isScared = true;
       direction = (direction+2)%4;
       targetX = prevTargetX;
@@ -164,8 +163,8 @@ public class Ghost implements Entity {
           if (player.direction == 3) {
             mPlayerX = player.x - 40;
           }
-          ghostX = int(2 * mPlayerX - Main.ghosts[0].x);
-          ghostY = int(2 * mPlayerX - Main.ghosts[0].y);
+          ghostX = int(2 * mPlayerX - ghosts[0].x);
+          ghostY = int(2 * mPlayerY - ghosts[0].y);
           //offset Red's movements by a bit
         }
         //-----ORANGE-----
@@ -190,46 +189,47 @@ public class Ghost implements Entity {
           if (isDead && x == ghostX && y == ghostY) {
             isDead = false;
           }
-          prevGhostX = ghostX;
-          prevGhostY = ghostY;
-          float best = -1;
-          int res = 5;
-          for (int i = 0; i < 4; i ++) {
-            if (i != (direction + 2)%4 && !grid.isWall(x + decodeX[i], y + decodeY[i])) {
-              float newDistance = dist(x + decodeX[i], y + decodeY[i], ghostX, ghostY);
-              if (newDistance == -1 || newDistance < best) {
-                best = newDistance;
-                res = i;
-              }
+        }
+        prevGhostX = ghostX;
+        prevGhostY = ghostY;
+        float best = -1;
+        int res = 5;
+        for (int i = 0; i < 4; i ++) {
+          if (i != (direction + 2)%4 && !grid.isWall(x + decodeX[i], y + decodeY[i])) {
+            float newDistance = dist(x + decodeX[i], y + decodeY[i], ghostX, ghostY);
+            if (best == -1 || newDistance < best) {
+              best = newDistance;
+              res = i;
             }
           }
-          direction = res;
-          targetX = x + decodeX[direction];
-          targetY = y + decodeY[direction];
-          return;
         }
+        direction = res;
+        targetX = x + decodeX[direction];
+        targetY = y + decodeY[direction];
+        return;
       }
     }
   }
-  
+
+
   void render () {
     stroke(0);
     fill(isScared?color(0, 0, 255):ghostColors[type]);
     pushMatrix();
-    translate(x,y);
+    translate(x, y);
     if (!isDead) {
-      rect(-11,-1,22,11); 
-      arc(0,0,22,22,PI,TWO_PI);
+      rect(-11, -1, 22, 11); 
+      arc(0, 0, 22, 22, PI, TWO_PI);
       for (int i = 0; i < 4; i ++) {
         arc(-7 + 5 * i, 10, 5, 5, 0, PI);
       }
     }
     fill(255);
     noStroke();
-    ellipse(-4,0,4,8);
-    ellipse(-4,0,4,8);
+    ellipse(-4, 0, 4, 8);
+    ellipse(4, 0, 4, 8);
     if (isDead || ! isScared) {
-      fill(0,0,255);
+      fill(0, 0, 255);
       int eyex = (direction==2?-1:0)+(direction==0?1:0);
       int eyey = (direction==3?-3:0)+(direction==1?3:0);
       ellipse(-4+eyex, eyey, 3, 3);
@@ -237,11 +237,10 @@ public class Ghost implements Entity {
     }
     popMatrix();
   }
-  
+
   void checkDead () {
-    if (grid.killAt(x,y)) {
+    if (grid.killAt(x, y)) {
       isDead = true;
     }
   }
-
 }

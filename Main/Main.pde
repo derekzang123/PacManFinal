@@ -4,7 +4,7 @@ static Ghost[] ghosts;
 static boolean toCorners = false;
 static int timerCorners;
 static int[] decodeX = {20, 0, -20, 0, 0};
-static int[] decodeY = {20, 0, -20, 0, 0};
+static int[] decodeY = {0, 20, 0, -20, 0};
 
 
 
@@ -38,10 +38,12 @@ void keyPressed() {
   if ( key == ' ') { 
     toCorners = !toCorners;
   }
-  if ( key == 'e' )
+  if ( key == 'e' ) {
     player.die();
-  if ( key == 'r' )
+  }
+  if ( key == 'r' ) {
     gameReset();
+   }
 }
 
 void mousePressed() {

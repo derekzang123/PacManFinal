@@ -21,7 +21,7 @@ public class PacMan implements Entity {
     direction = 0;
     mouthOpen = 0;
     mouthOpenMax = 0.4;
-    mouthStep = 0.1;
+    mouthStep = 0.01;
     isEnergized = false;
     isDead = false;
     energizerCountdown = 0;
@@ -86,7 +86,6 @@ public class PacMan implements Entity {
     if (direction == 0) {
       moveRight();
     }
-    //check if the button P1_RIGHT is being pressed:
     if (direction == 1) {
       moveDown();
     }
@@ -109,7 +108,9 @@ public class PacMan implements Entity {
     }
     if (energizerCountdown == 0) {
       isEnergized = false;
-      for (int i=0; i<ghosts.length; ghosts[i++].notAfraid ());
+      for (int i=0; i< ghosts.length; i ++) {
+        ghosts[i].notAfraid();
+      }
     }
   }
   
@@ -131,7 +132,9 @@ public class PacMan implements Entity {
   void getEnergizer () {
     isEnergized = true;
     energizerCountdown = 500;
-    for (int i=0; i<ghosts.length; ghosts[i++].Afraid ());
+    for (int i=0; i<ghosts.length; i ++) {
+      ghosts[i].Afraid();
+    }
   }
   
   void render () {

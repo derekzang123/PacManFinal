@@ -26,15 +26,14 @@ public class GameBoard {
           fill(0, 0, 255); // blue
           pushStyle();
           stroke(0, 0, 255);
-          //stroke(0, 255-map(dist(player.x,player.y,20*i,20*j),0,200,0,255), 255 );
           strokeWeight(12);
           pushMatrix();
           translate(20*i, 20*j);
           line(10, 10, 10, 10);
-          if (i<29 && data[j][i+1] .equals(  "1")) {
+          if (i<29 && data[j][i+1].equals("1")) {
             line(10, 10, 30, 10);
           }
-          if (j<29 && data[j+1][i] .equals(  "1")) {
+          if (j<29 && data[j+1][i].equals("1")) {
             line(10, 10, 10, 30);
           }
           popMatrix();
@@ -55,24 +54,24 @@ public class GameBoard {
   }
   
   boolean isWall (float ix, float iy) {
-    int x_ = int (ix/20);
-    int y_ = int (iy/20);
-    return data[y_][x_].equals("1");
+    int i = int (ix/20);
+    int j = int (iy/20);
+    return data[j][i].equals("1");
   }
   
   void eatDotAt (float ix, float iy) {
-    int x_ = int (ix/20);
-    int y_ = int (iy/20);
-    if (data[y_][x_].equals("3")) {
+    int i = int (ix/20);
+    int j = int (iy/20);
+    if (data[j][i].equals("3")) {
       player.getEnergizer();
     }
-    data[y_][x_] = "0";
+    data[j][i] = "0";
   }
   
   void editGameBoard (int ix, int iy) {
-    int x_ = int (ix/20);
-    int y_ = int (iy/20);
-    data[y_][x_] = str(int((data[y_][x_]) + 1) % 4);
+    int i = int (ix/20);
+    int j = int (iy/20);
+    data[j][i] = str(int((data[j][i]) + 1) % 4);
   }
   
   void saveGameBoard () {
@@ -99,12 +98,12 @@ public class GameBoard {
     println("gameboard loaded");
   }
   
-  boolean killAt (float x, float y) {
-    int x_ = int (x/20);
-    int y_ = int (y/20);
-    int pX_ = int (player.x/20);
-    int pY_ = int (player.y/20);
-    if (x_ == pX_ && y_ == pY_) {
+  boolean killAt (float ix, float iy) {
+    int i = int (ix/20);
+    int j = int (iy/20);
+    int pi = int (player.x/20);
+    int pj = int (player.y/20);
+    if (i == pi && j == pj) {
       if (player.isEnergized) {
         return true;
       } else {
