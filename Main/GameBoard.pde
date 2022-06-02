@@ -17,5 +17,48 @@ public class GameBoard {
     data[5][10] = "3";
   }
   
-  void display ()
+  void display () {
+    for (int j=0; j<height/20; j++) {
+      for (int i=0; i<width/20; i++) {
+        noFill();      
+        if (data[j][i].equals( "1")) { 
+
+          fill(0, 0, 255); // blue
+          pushStyle();
+          stroke(0, 0, 255);
+          //stroke(0, 255-map(dist(player.x,player.y,20*i,20*j),0,200,0,255), 255 );
+          strokeWeight(12);
+          pushMatrix();
+          translate(20*i, 20*j);
+          line(10, 10, 10, 10);
+          if (i<29 && data[j][i+1] .equals(  "1")) {
+            line(10, 10, 30, 10);
+          }
+          if (j<29 && data[j+1][i] .equals(  "1")) {
+            line(10, 10, 10, 30);
+          }
+          popMatrix();
+          popStyle();
+        }
+        if (data[j][i] .equals( "2")) {
+          fill(196);
+          noStroke();
+          ellipse(20*i+10, 20*j+10, 6, 6);
+        }      
+        if (data[j][i] .equals( "3")) {
+          fill(255);
+          noStroke();
+          ellipse(20*i+10, 20*j+10, 12, 12);
+        }
+      }
+    }
+  }
+  
+  boolean isWall (float x, float y) {
+    int x_ = int (x/20);
+    int y_ = int (y/20);
+    return data[x_][y_].equals("1");
+  }
+  
+  
 }
