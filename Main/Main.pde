@@ -1,13 +1,8 @@
 Controller keyboardInput;
 PacMan player;
+static int[] decodeX = {20,0,-20,0,0};
+static int[] decodeY = {20,0,-20,0,0};
 
-  void keyPressed() {
-    keyboardInput.press(keyCode);
-  }
-
-  void keyReleased() {
-    keyboardInput.release(keyCode);
-  }
 
   void setup() {
     size(308, 396);

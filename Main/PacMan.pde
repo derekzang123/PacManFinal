@@ -138,6 +138,14 @@ public class PacMan implements Entity {
     arc(0,0,22,22,-mouthOpen,mouthOpen);
     popMatrix();
   }
+  
+  void keyPressed() {
+    keyboardInput.press(keyCode);
+  }
+
+  void keyReleased() {
+    keyboardInput.release(keyCode);
+  }
 }
 
  /**************CONTROLLER TAB************/
