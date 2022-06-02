@@ -1,16 +1,16 @@
 interface Entity {
   
-  int getX();
-  int getY();
-  void setX();
-  void setY();
-  void setDirection();
+  float getX();
+  float getY();
+  void setY(float y);
+  void setX(float x);
+  void setDirection(int dir);
   void moveUp();
   void moveDown();
   void moveLeft();
   void moveRight();
-  void respawn();
-  void display();
-  void isFacingWall();
+  void simulate();
+  void render();
+  void draw ();
   
 }

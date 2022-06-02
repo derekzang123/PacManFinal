@@ -1,45 +1,64 @@
 public class PacMan implements Entity {
   
-  PImage spriteDefault;
-  PImage spriteRight;
-  PImage spriteLeft;
-  PImage spriteUp;
-  PImage spriteDown;
-  MazeTile startPos;
-  int x,y;
-  int counter;
-  int pelletsEaten;
-  double dx,dy = 4;
-  String direction;
-  boolean isEnergized;
-  int lives = 3;
+  float startX = 50;
+  float startY = 50;
+  float x,y;
+  float dx = 3,dy = 3;
+  float mouthOpen, mouthOpenMax, mouthStep;
+  boolean isMouthOpen = true;
+  boolean isDead = false;
+  boolean isEnergized = false;
+  int energizerCountdown;
+  int direction;
   
-  int getX() {
+  PacMan () {
+    respawn();
+  }
+  
+  void respawn () {
+    x = startX;
+    y = startY;
+    direction = 0;
+    mouthOpen = 0;
+    mouthOpenMax = 0.4;
+    mouthStep = 0.01;
+    isEnergized = false;
+    isDead = false;
+    energizerCountdown = 0;
+  }
+  
+  void die () {
+    isDead = true;
+    mouthOpenMax = TWO_PI;
+    mouthStep = 0.1;
+  }
+  
+  float getX() {
     return x;
   }
   
-  int getY() {
+  float getY() {
     return y;
   }
   
-  void setX (int x_) {
-    x = x_;
-  }
-  
-  void setY (int y_) {
+  void setY (float y_) {
     y = y_;
   }
   
-  void setDirection (String direction_) {
+  void setX (float x_) {
+    x = x_;
+  }
+  
+  void setDirection (int direction_) {
     direction = direction_;
   }
   
   void moveUp () {
-    y += dy;
+    y -= dy;
   }
   
   void moveDown() {
-    y -= dy;
+    y += dy;
   }
   
   void moveLeft() {
@@ -50,23 +69,102 @@ public class PacMan implements Entity {
     x += dx;
   }
   
-  void respawn() {
-    lives = 3;
-    
+  void draw () {
+    simulate();
+    render();
   }
   
-  void display() {
-    spriteDefault = loadImage("pacman.png");
-    spriteRight = loadImage("pacmanRight.gif");
-    spriteLeft = loadImage("pacmanLeft.gif");
-    spriteUp = loadImage("pacmanUp.gif");
-    spriteDown = loadImage("pacmanDown.gif");
+  void simulate () {
+    if (mouthOpen > PI) {
+      respawn();
+    }
+    if (isDead) {
+      animateMouth();
+      return;
+    }
+    float px=x,py=y;
+    if (direction == 0) {
+      moveRight();
+    }
+    if (direction == 1) {
+      moveDown();
+    }
+    if (direction == 2) {
+      moveLeft();
+    }
+    //check if the button P1_RIGHT is being pressed:
+    if (direction == 3) {
+      moveUp();
+    }
+    if (grid.isWall(x,y)) {
+      x = px;
+      y = py;
+    } else {
+      animateMouth();
+      grid.eatDotAt(x,y);
+    }
+    if (energizerCountdown > 0) {
+      energizerCountdown --;
+    }
+    if (energizerCountdown == 0) {
+      isEnergized = false;
+      for (int i=0; i< ghosts.length; i ++) {
+        ghosts[i].notAfraid();
+      }
+    }
   }
   
-  void isFacingWall() {
-    
+  void animateMouth () {
+    if (isMouthOpen) {
+      mouthOpen += mouthStep;
+    } else {
+      mouthOpen -= mouthStep;
+    }
+    if (mouthOpen > mouthOpenMax || mouthOpenMax < 0) {
+      isMouthOpen = !isMouthOpen;
+    }
   }
   
+  boolean hasEnergizer () {
+    return isEnergized;
+  }
   
+  void getEnergizer () {
+    isEnergized = true;
+    energizerCountdown = 500;
+    for (int i=0; i<ghosts.length; i ++) {
+      ghosts[i].Afraid();
+    }
+  }
   
+  void render () {
+    pushMatrix();
+    translate(x,y);
+    rotate(HALF_PI * direction);
+    stroke(0);
+    fill(255,233,0);
+    ellipse(0,0,22,22);
+    fill(0);
+    arc(0,0,22,22,-mouthOpen,mouthOpen);
+    popMatrix();
+  }
+  
+  void onKeyPressed() {
+    if ( key == CODED ) {
+      if ( keyCode == RIGHT ) {
+        direction = 0;
+      }
+      if ( keyCode == DOWN )  {
+        direction = 1;
+      }
+      if ( keyCode == LEFT ) {
+        direction = 2;
+      }
+      if ( keyCode == UP ) {
+        direction = 3;
+      }
+    }
+  }
 }
+
+ 
