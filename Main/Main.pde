@@ -11,7 +11,6 @@ static int[] decodeY = {20, 0, -20, 0, 0};
 void setup() {
   size(601, 601);
   grid = new GameBoard();
-  grid.loadGameBoard();
   player = new PacMan();
   ghosts = new Ghost[5];
   for (int i=0; i<ghosts.length; i++) {

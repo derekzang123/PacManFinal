@@ -95,16 +95,16 @@ public class Ghost implements Entity {
     float prevX = x;
     float prevY = y;
     if (targetX < x) {
-      moveRight();
-    }
-    if (targetX > x) {
-      moveDown();
-    }
-    if (targetY < y) {
       moveLeft();
     }
-    if (targetY > y) {
+    if (targetX > x) {
+      moveRight();
+    }
+    if (targetY < y) {
       moveUp();
+    }
+    if (targetY > y) {
+      moveDown();
     }
     if (prevX == x && prevY == y) {
       prevTargetX = targetX;
@@ -145,7 +145,6 @@ public class Ghost implements Entity {
         targetY = y + decodeY[direction];
         return;
       }
-      player = new PacMan();
       //-----RED-----
       int ghostX = int(player.x);
       int ghostY = int(player.y);
@@ -161,7 +160,7 @@ public class Ghost implements Entity {
         //-----CYAN-----
         if (type == 2) {
           float mPlayerX = player.x + 2 * decodeX[player.direction];
-          float mPlayery = player.y + 2 * decodeY[player.direction];
+          float mPlayerY = player.y + 2 * decodeY[player.direction];
           if (player.direction == 3) {
             mPlayerX = player.x - 40;
           }
@@ -229,7 +228,7 @@ public class Ghost implements Entity {
     noStroke();
     ellipse(-4,0,4,8);
     ellipse(-4,0,4,8);
-    if (isDead && ! isScared) {
+    if (isDead || ! isScared) {
       fill(0,0,255);
       int eyex = (direction==2?-1:0)+(direction==0?1:0);
       int eyey = (direction==3?-3:0)+(direction==1?3:0);
