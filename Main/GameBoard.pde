@@ -18,8 +18,8 @@ public class GameBoard {
   }
   
   void draw () {
-    for (int j=0; j<height/20; j++) {
-      for (int i=0; i<width/20; i++) {
+    for (int j=0; j<width/20; j++) {
+      for (int i=0; i<height/20; i++) {
         noFill();      
         if (data[j][i].equals( "1")) { 
 
@@ -40,14 +40,14 @@ public class GameBoard {
           popStyle();
         }
         if (data[j][i] .equals( "2")) {
-          fill(196);
+          fill(255,153,153);
           noStroke();
-          ellipse(20*i+10, 20*j+10, 6, 6);
+          square(20 * i + 10, 20 * j + 10, 4);
         }      
         if (data[j][i] .equals( "3")) {
-          fill(255);
+          fill(255,153,153);
           noStroke();
-          ellipse(20*i+10, 20*j+10, 12, 12);
+          ellipse(20*i+10, 20*j+10, 10, 10);
         }
       }
     }
@@ -56,7 +56,7 @@ public class GameBoard {
   boolean isWall (float ix, float iy) {
     int i = int (ix/20);
     int j = int (iy/20);
-    return data[j][i].equals("1");
+    return (data[j][i] .equals(  "1"));
   }
   
   void eatDotAt (float ix, float iy) {
