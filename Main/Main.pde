@@ -1,34 +1,35 @@
-Controller keyboardInput;
-PacMan player;
+static GameBoard grid;
+static PacMan player;
+static Ghost[] ghosts;
+static boolean toCorners = false;
+static int timerCorners;
 static int[] decodeX = {20,0,-20,0,0};
 static int[] decodeY = {20,0,-20,0,0};
 
 
+
   void setup() {
-    size(308, 396);
-    keyboardInput = new Controller();
+    size(601,601);
+    grid = new GameBoard();
+    grid.loadGameBoard();
     player = new PacMan();
+    ghosts = new Ghost[5];
+    for (int i = 0; i < 5; i ++) {
+      ghosts[i] = new Ghost(i);
+    }
+    timerCorners = millis() + 10000;
   }
 
   //Visualize which keys are being held down...
   void draw() {
     background(0);
     player.display();
-    if (keyboardInput.isPressed(Controller.P1_LEFT)) {
-      player.moveLeft();
-      player.displayLeft();
+    grid.display();
+    for (int i = 0; i < 5; i++) {
+      ghosts[i].display();
     }
-    if (keyboardInput.isPressed(Controller.P1_RIGHT)) {
-      player.moveRight();
-      player.displayRight();
-    }
-    if (keyboardInput.isPressed(Controller.P1_UP)) {
-      player.displayUp();
-      player.moveUp();
-    }
-    if (keyboardInput.isPressed(Controller.P1_DOWN)) {
-      player.displayDown();
-      player.moveDown();
+    if (millis() > timerCorners) {
+      toCorners = !toCorners;
     }
   }
 

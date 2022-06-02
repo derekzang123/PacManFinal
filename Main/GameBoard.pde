@@ -1,7 +1,6 @@
 public class GameBoard {
   
   String[][] data = new String[30][30];
-  PacMan player = new PacMan();
   
   GameBoard () {
     for (int i = 0; i < 30; i ++) {

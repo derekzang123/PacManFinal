@@ -9,7 +9,7 @@ public class PacMan implements Entity {
   boolean isDead = false;
   boolean isEnergized = false;
   int direction;
-  Controller keyBoardInput;
+  Controller keyboardInput;
   
   PacMan () {
     respawn();
@@ -81,7 +81,7 @@ public class PacMan implements Entity {
       return;
     }
     float px=x,py=y;
-    keyBoardInput = new Controller();
+    keyboardInput = new Controller();
     if (keyboardInput.isPressed(Controller.P1_RIGHT)) {
       direction = 0;
       moveRight();
@@ -100,12 +100,12 @@ public class PacMan implements Entity {
       direction = 3;
       moveUp();
     }
-    if (GameBoard.isWall(x,y)) {
+    if (grid.isWall(x,y)) {
       x = px;
       y = py;
     } else {
       animateMouth();
-      GameBoard.eatDotAt(x,y);
+      grid.eatDotAt(x,y);
     }
   }
   
