@@ -1,6 +1,7 @@
 public class GameBoard {
   
   String[][] data = new String[30][30];
+  PacMan player = new PacMan();
   
   GameBoard () {
     for (int i = 0; i < 30; i ++) {
@@ -60,5 +61,59 @@ public class GameBoard {
     return data[x_][y_].equals("1");
   }
   
+  void eatDotAt (float x, float y) {
+    int x_ = int (x/20);
+    int y_ = int (y/20);
+    if (data[x_][y_].equals("3")) {
+      data[x_][y_] = "0";
+    }
+  }
   
+  void saveGameBoard () {
+    String[] temp = new String[30];
+    for (int i = 0; i < 30; i ++) {
+      temp[i] = "";
+      for (int j = 0; j < 30; j ++) {
+        temp[i] += data[i][j];
+      }
+    }
+    saveStrings("world",temp);
+    println("gameboard saved");
+  }
+  
+  void loadGameBoard () {
+    String[] temp = loadStrings("world");
+    if (temp != null) {
+      for (int i = 0; i < 30; i ++) {
+        for (int j = 0; j < 30; j ++) {
+          data[i][j] = "" + temp[i].charAt(j);
+        }
+      }
+    }
+    println("gameboard loaded");
+  }
+  
+  boolean deadAt (float x, float y) {
+    int x_ = int (x/20);
+    int y_ = int (y/20);
+    int pX_ = int (player.x/20);
+    int pY_ = int (player.y/20);
+    if (x_ == pX_ && y_ == pY_) {
+      if (player.isEnergized) {
+        return false;
+      } else {
+        player.die();
+      }
+    }
+    return true;
+  }
+  
+  void keyPressed () {
+    if (key == 's') {
+      saveGameBoard();
+    }
+    if (key == 'l') {
+      loadGameBoard();
+    }
+  }
 }
