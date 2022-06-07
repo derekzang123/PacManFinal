@@ -33,7 +33,7 @@ void draw() {
 }
 
 void keyPressed() {
-  grid.onKeyPressed();
+  //grid.onKeyPressed();
   player.onKeyPressed();
   if ( key == ' ') { 
     toCorners = !toCorners;

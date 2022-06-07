@@ -10,10 +10,9 @@ public class Ghost implements Entity {
   int trapTimer;
   color[] ghostColors = {
     color(255, 0, 0), 
-    color(255, 64, 196), 
+    color(244, 194, 194), 
     color(0, 255, 255), 
-    color(255, 128, 0), 
-    color(0, 255, 0), 
+    color(251, 191, 119), 
   };
 
   Ghost (int itype) {
@@ -93,16 +92,16 @@ public class Ghost implements Entity {
     }
     float prevX = x;
     float prevY = y;
-    if (targetX < x ) {
+    if (player.x < x ) {
       moveLeft();
     }
-    if (targetX > x) {
+    if (player.x > x) {
       moveRight();
     }
-    if (targetY < y) {
+    if (player.y < y) {
       moveUp();
     }
-    if (targetY > y) {
+    if (player.y > y) {
       moveDown();
     }
     if (prevX == x && prevY == y) {
@@ -210,8 +209,27 @@ public class Ghost implements Entity {
       }
     }
   }
-
-
+  /*
+  void simulate () {
+    trapTimer --;
+    if (trapTimer > 0) {
+      return;
+    }
+    float prevX = x;
+    float prevY = y;
+    //RED
+    
+    if (type == 0) {
+    }
+    //BLUE
+    if (type == 1) {
+    }
+    if (type == 2) {
+    }
+    if (type == 3) {
+    }
+  }
+  */
   void render () {
     stroke(0);
     fill(isScared?color(0, 0, 255):ghostColors[type]);
