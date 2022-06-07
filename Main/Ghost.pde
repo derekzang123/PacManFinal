@@ -93,7 +93,7 @@ public class Ghost implements Entity {
     }
     float prevX = x;
     float prevY = y;
-    if (targetX < x) {
+    if (targetX < x ) {
       moveLeft();
     }
     if (targetX > x) {

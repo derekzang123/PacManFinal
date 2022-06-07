@@ -56,7 +56,7 @@ public class GameBoard {
   boolean isWall (float ix, float iy) {
     int i = int (ix/20);
     int j = int (iy/20);
-    return (data[j][i] .equals(  "1"));
+    return (data[j][i].equals("1"));
   }
   
   void eatDotAt (float ix, float iy) {
@@ -86,12 +86,11 @@ public class GameBoard {
     println("gameboard saved");
   }
   
-  void loadGameBoard () {
-    String[] temp = loadStrings("world.dat");
-    if (temp != null) {
+  void loadGameBoard (String[][] map) {
+    if (map != null) {
       for (int j = 0; j < 30; j ++) {
         for (int i = 0; i < 30; i ++) {
-          data[j][i] = "" + temp[j].charAt(i);
+          data[j][i] = map[j][i];
         }
       }
     }
