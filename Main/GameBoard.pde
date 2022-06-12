@@ -1,3 +1,5 @@
+import java.util.*;
+import java.io.*;
 
 public class GameBoard {
   
@@ -87,15 +89,12 @@ public class GameBoard {
     println("gameboard saved");
   }
   
-  void loadGameBoard () {
-    if (data != null) {
-      for (int j = 0; j < 30; j ++) {
-        for (int i = 0; i < 30; i ++) {
-          data[j][i] = data[j][i];
-        }
+  void loadGameBoard (String[][] level) {
+    for (int j = 0; j < 30; j++) {
+      for (int i = 0; i < 30; i ++) {
+        data[j][i] = level[j][i];
       }
     }
-    println("gameboard loaded");
   }
   
   boolean killAt (float ix, float iy) {
@@ -112,7 +111,7 @@ public class GameBoard {
     }
     return false;
   }
-  
+  /*
   void onKeyPressed () {
     if (key == 'k') {
       saveGameBoard();
@@ -121,4 +120,5 @@ public class GameBoard {
       loadGameBoard();
     }
   }
+  */
 }

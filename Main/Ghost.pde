@@ -175,7 +175,7 @@ public class Ghost implements Entity{
       if (isDead||isScared) {
         gx = 310;
         gy = 290;
-        if (isDead && (x >=gx - 40 && x <=gx+40) && (y>=gy-40 && y <= gy +40)) 
+        if (isDead && (x >=gx - 20 && x <=gx+20) && (y>=gy-20 && y <= gy +20)) 
           isDead = false;
       }    
       pgx = gx;
