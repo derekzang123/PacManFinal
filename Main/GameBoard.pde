@@ -1,3 +1,4 @@
+
 public class GameBoard {
   
   String[][] data = new String[30][30];
@@ -21,7 +22,7 @@ public class GameBoard {
     for (int j=0; j<width/20; j++) {
       for (int i=0; i<height/20; i++) {
         noFill();      
-        if (data[j][i].equals( "1")) { 
+        if (data[j][i].equals("1")) { 
 
           fill(0, 0, 255); // blue
           pushStyle();
@@ -39,12 +40,12 @@ public class GameBoard {
           popMatrix();
           popStyle();
         }
-        if (data[j][i] .equals( "2")) {
+        if (data[j][i].equals("2")) {
           fill(255,153,153);
           noStroke();
           square(20 * i + 10, 20 * j + 10, 4);
         }      
-        if (data[j][i] .equals( "3")) {
+        if (data[j][i].equals("3")) {
           fill(255,153,153);
           noStroke();
           ellipse(20*i+10, 20*j+10, 10, 10);
@@ -62,7 +63,7 @@ public class GameBoard {
   void eatDotAt (float ix, float iy) {
     int i = int (ix/20);
     int j = int (iy/20);
-    if (data[j][i]. equals(  "3")) {
+    if (data[j][i].equals("3")) {
       player.getEnergizer();
     }
     data[j][i] = "0";

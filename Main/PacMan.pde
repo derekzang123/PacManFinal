@@ -1,38 +1,31 @@
-public class PacMan implements Entity {
-  
+public class PacMan implements Entity{
+
   float startX = 50;
   float startY = 50;
-  float x,y;
-  float dx = 1.5,dy = 1.5;
+  float x, y;
+  float dx = 1.5, dy = 1.5;
+  int direction;
   float mouthOpen, mouthOpenMax, mouthStep;
   boolean isMouthOpen = true;
-  boolean isDead = false;
   boolean isEnergized = false;
+  boolean isDead = false;
   int energizerCountdown;
-  int direction;
-  
-  PacMan () {
+
+  PacMan() {
     respawn();
   }
-  
-  void respawn () {
+
+  void respawn() {
     x = startX;
     y = startY;
     direction = 0;
-    mouthOpen = 0;
-    mouthOpenMax = 0.4;
-    mouthStep = 0.01;
+    mouthOpen = 0; 
+    mouthOpenMax = .4; 
+    mouthStep = .01;
     isEnergized = false;
-    isDead = false;
     energizerCountdown = 0;
+    isDead = false;
   }
-  
-  void die () {
-    isDead = true;
-    mouthOpenMax = TWO_PI;
-    mouthStep = 0.1;
-  }
-  
   float getX() {
     return x;
   }
@@ -68,104 +61,82 @@ public class PacMan implements Entity {
   void moveRight() {
     x += dx;
   }
-  
-  void draw () {
+  void die() {
+    isDead = true;
+    mouthOpenMax = TWO_PI;
+    mouthStep = .1;
+  }
+  void draw() {
     simulate();
     render();
   }
-  
-  void simulate () {
-    if (mouthOpen > PI) {
-      respawn();
-    }
-    if (isDead) {
-      animateMouth();
+  void simulate() {
+    if (mouthOpen > PI ) respawn();
+    if (isDead) { 
+      animateMouth(); 
       return;
     }
-    float px=x,py=y;
-    if (direction == 0) {
-      moveRight();
-    }
-    if (direction == 1) {
-      moveDown();
-    }
-    if (direction == 2) {
-      moveLeft();
-    }
-    //check if the button P1_RIGHT is being pressed:
-    if (direction == 3) {
-      moveUp();
-    }
-    if (grid.isWall(x-6,y) || grid.isWall(x,y-6) || grid.isWall(x+6,y) || grid.isWall(x,y+6)) {
+    float px=x, py=y;
+    if (0==direction) 
+      x += dx;
+    if (1==direction) 
+      y += dy;
+    if (2==direction) 
+      x -= dx;
+    if (3==direction) 
+      y -= dy;
+    if (grid.isWall(x, y)) {
       x = px;
       y = py;
     } else {
       animateMouth();
-      grid.eatDotAt(x,y);
+      grid.eatDotAt(x, y);
     }
-    if (energizerCountdown > 0) {
-      energizerCountdown --;
+    if (energizerCountdown > 0) { 
+      energizerCountdown--;
     }
-    if (energizerCountdown == 0) {
+    if (energizerCountdown == 0) { 
       isEnergized = false;
-      for (int i=0; i< ghosts.length; i ++) {
-        ghosts[i].notAfraid();
-      }
+      for (int i=0; i<ghosts.length; ghosts[i++].notAfraid ());
     }
   }
-  
-  void animateMouth () {
+  void animateMouth() {
     if (isMouthOpen) {
-      mouthOpen += mouthStep;
+      mouthOpen+=mouthStep;
     } else {
-      mouthOpen -= mouthStep;
+      mouthOpen-=mouthStep;
     }
-    if (mouthOpen > mouthOpenMax || mouthOpenMax < 0) {
+    if (mouthOpen > mouthOpenMax || mouthOpen < 0) {
       isMouthOpen = !isMouthOpen;
     }
   }
-  
-  boolean hasEnergizer () {
-    return isEnergized;
-  }
-  
-  void getEnergizer () {
+
+  void getEnergizer() {
     isEnergized = true;
-    energizerCountdown = 100;
-    for (int i=0; i<ghosts.length; i ++) {
-      ghosts[i].Afraid();
-    }
+    energizerCountdown = 500;
+    for (int i=0; i<ghosts.length; ghosts[i++].Afraid ());
   }
-  
-  void render () {
+  void render() {
     pushMatrix();
-    translate(x,y);
-    rotate(HALF_PI * direction);
+    translate(x, y);
+    rotate(HALF_PI*direction);
     stroke(0);
-    fill(isEnergized?color(random(255), random(255), random(255)):color(255, 255, 0));
-    ellipse(0,0,22,22);
+    fill(255,255,0);
+    ellipse(0, 0, 22, 22);
     fill(0);
-    arc(0,0,22,22,-mouthOpen,mouthOpen);
+    arc(0, 0, 22, 22, - mouthOpen, mouthOpen);
     popMatrix();
   }
-  
   void onKeyPressed() {
     if ( key == CODED ) {
-      if ( keyCode == RIGHT ) {
-        direction = 0;
-      }
-      if ( keyCode == DOWN )  {
-        direction = 1;
-      }
-      if ( keyCode == LEFT ) {
-        direction = 2;
-      }
-      if ( keyCode == UP ) {
-        direction = 3;
-      }
+      if ( keyCode == RIGHT ) 
+        direction=0;
+      if ( keyCode == DOWN )  
+        direction=1;
+      if ( keyCode == LEFT )  
+        direction=2;
+      if ( keyCode == UP )    
+        direction=3;
     }
   }
 }
-
-
- 

@@ -9,6 +9,7 @@ public class Ghost implements Entity{
   boolean isScared;
   boolean isDead;
   int trappedTimer;
+  int killTimer = 50;
   color[] ghostColors = {
     color(255, 0, 0), 
     color(244, 194, 194), 
@@ -24,7 +25,7 @@ public class Ghost implements Entity{
     targetY = y;
     prevTargetX=targetX;
     prevTargetY=targetY;
-    trappedTimer = 200 * type;
+    trappedTimer = type * 50;
   }
   
   float getX () {
@@ -84,7 +85,8 @@ public class Ghost implements Entity{
   void draw() {
     simulate();
     render();
-    if (!isDead) killCheck();
+    if (!isDead) 
+      killCheck();
   }
   
   void simulate() {
@@ -109,7 +111,7 @@ public class Ghost implements Entity{
           walls ++;
         }
       }
-      if (walls == 4) { // >:(
+      if (walls == 4) {
         direction = 4;
         targetX = x+decodeX[direction];
         targetY = y+decodeY[direction];
@@ -173,7 +175,8 @@ public class Ghost implements Entity{
       if (isDead||isScared) {
         gx = 310;
         gy = 290;
-        if (isDead && x==gx &&y==gy) isDead = false;
+        if (isDead && (x >=gx - 40 && x <=gx+40) && (y>=gy-40 && y <= gy +40)) 
+          isDead = false;
       }    
       pgx = gx;
       pgy = gy;
@@ -222,8 +225,8 @@ public class Ghost implements Entity{
   }
   
   void killCheck() {
-    if (grid.killAt(x, y)) 
+    if (grid.killAt(x, y)) {
       isDead = true;
+    }
   }
-  
 }
