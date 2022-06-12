@@ -182,12 +182,12 @@ public class Ghost implements Entity{
       pgy = gy;
       float best = -1 ;
       int result = 5;
-      for ( int w = 0; w < 4; w++) {
-        if ( w!=(direction+2)%4 && !grid.isWall(x+decodeX[w], y+decodeY[w])) {
-          float newDist = dist(x+decodeX[w], y+decodeY[w], gx, gy);
+      for ( int i = 0; i < 4; i++) {
+        if ( i!=(direction+2)%4 && !grid.isWall(x+decodeX[i], y+decodeY[i])) {
+          float newDist = dist(x+decodeX[i], y+decodeY[i], gx, gy);
           if ( best == -1 || newDist < best) {
             best = newDist;
-            result = w;
+            result = i;
           }
         }
       }
