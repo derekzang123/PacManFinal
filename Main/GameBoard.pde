@@ -86,11 +86,11 @@ public class GameBoard {
     println("gameboard saved");
   }
   
-  void loadGameBoard (String[][] map) {
-    if (map != null) {
+  void loadGameBoard () {
+    if (data != null) {
       for (int j = 0; j < 30; j ++) {
         for (int i = 0; i < 30; i ++) {
-          data[j][i] = map[j][i];
+          data[j][i] = data[j][i];
         }
       }
     }
@@ -112,7 +112,6 @@ public class GameBoard {
     return false;
   }
   
-  /*
   void onKeyPressed () {
     if (key == 'k') {
       saveGameBoard();
@@ -121,5 +120,4 @@ public class GameBoard {
       loadGameBoard();
     }
   }
-  */
 }

@@ -142,7 +142,7 @@ public class PacMan implements Entity {
     translate(x,y);
     rotate(HALF_PI * direction);
     stroke(0);
-    fill(255,233,0);
+    fill(isEnergized?color(random(255), random(255), random(255)):color(255, 255, 0));
     ellipse(0,0,22,22);
     fill(0);
     arc(0,0,22,22,-mouthOpen,mouthOpen);
@@ -166,5 +166,6 @@ public class PacMan implements Entity {
     }
   }
 }
+
 
  

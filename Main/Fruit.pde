@@ -1,7 +1,6 @@
 public class Fruit {
   
-  MazeTile position;
-    
+  /*
   public Fruit (int posX_, int posY_) {
     position = new MazeTile(posX_,posY_);
   }
@@ -26,5 +25,6 @@ public class Fruit {
     //display random sprite
     
   }
+  */
 
 }

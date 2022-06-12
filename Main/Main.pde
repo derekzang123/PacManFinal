@@ -3,8 +3,8 @@ static PacMan player;
 static Ghost[] ghosts;
 static boolean toCorners = false;
 static int timerCorners;
-static int[] decodeX = {20, 0, -20, 0, 0};
-static int[] decodeY = {0, 20, 0, -20, 0};
+static int[] decodeX = {22, 0, -22, 0, 0};
+static int[] decodeY = {0, 22, 0, -22, 0};
 
 
 
@@ -16,7 +16,7 @@ void setup() {
   for (int i=0; i<ghosts.length; i++) {
     ghosts[i] = new Ghost(i);
   }
-  timerCorners = millis() + 20000;
+  timerCorners = millis() + 10000;
 }
 
 void draw() {
@@ -27,13 +27,13 @@ void draw() {
     ghosts[i].draw ();
   }
   if ( millis() > timerCorners) {
-    timerCorners = millis() + 20000;
+    timerCorners = millis() + 10000;
     toCorners = !toCorners;
   }
 }
 
 void keyPressed() {
-  //grid.onKeyPressed();
+  grid.onKeyPressed();
   player.onKeyPressed();
   if ( key == ' ') { 
     toCorners = !toCorners;
