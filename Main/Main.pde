@@ -9,7 +9,7 @@ static int[] decodeY = {0, 22, 0, -22, 0};
 void setup() {
   size(600, 600);
   grid = new GameBoard();
-  grid.loadGameBoard(level0);
+  grid.loadGameBoard(level1);
   player = new PacMan();
   ghosts = new Ghost[5];
   for (int i=0; i<ghosts.length; i++) {
