@@ -1,7 +1,7 @@
 public class PacMan implements Entity{
 
-  float startX = 50;
-  float startY = 50;
+  float startX = 30;
+  float startY = 30;
   float x, y;
   float dx = 1.5, dy = 1.5;
   int direction;
