@@ -10,6 +10,7 @@ public class PacMan implements Entity{
   boolean isEnergized = false;
   boolean isDead = false;
   int energizerCountdown;
+  int score = 0;
 
   PacMan() {
     respawn();

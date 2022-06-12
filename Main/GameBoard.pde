@@ -29,7 +29,7 @@ public class GameBoard {
           fill(0, 0, 255); // blue
           pushStyle();
           stroke(0, 0, 255);
-          strokeWeight(12);
+          strokeWeight(6);
           pushMatrix();
           translate(20*i, 20*j);
           line(10, 10, 10, 10);
@@ -69,6 +69,7 @@ public class GameBoard {
       player.getEnergizer();
     }
     data[j][i] = "0";
+    player.score += 10;
   }
   
   void editGameBoard (int ix, int iy) {
