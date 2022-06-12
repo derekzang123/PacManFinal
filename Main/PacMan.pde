@@ -85,7 +85,7 @@ public class PacMan implements Entity{
       x -= dx;
     if (3==direction) 
       y -= dy;
-    if (grid.isWall(x, y)) {
+    if (grid.isWall(x-6,y) || grid.isWall(x,y-6) || grid.isWall(x+6,y) || grid.isWall(x,y+6)) {
       x = px;
       y = py;
     } else {
