@@ -14,6 +14,7 @@ void setup() {
   levels.add(level0);
   levels.add(level1);
   levels.add(level2);
+  levels.add(level3);
   grid = new GameBoard();
   grid.loadGameBoard(levels.get(0));
   //grid.countPellets();
@@ -64,7 +65,7 @@ void keyPressed() {
   if (key == 'a') {
     try {
       level --;
-      grid.loadGameBoard(levels.get(level%3));
+      grid.loadGameBoard(levels.get(level%4));
       gameReset();
     } 
     catch (IndexOutOfBoundsException e) {
@@ -74,7 +75,7 @@ void keyPressed() {
   if (key == 'd') {
     try {
       level ++;
-      grid.loadGameBoard(levels.get(level%3));
+      grid.loadGameBoard(levels.get(level%4));
       gameReset();
     } 
     catch (IndexOutOfBoundsException e) {
