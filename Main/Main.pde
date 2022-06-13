@@ -34,7 +34,7 @@ void draw() {
     ghosts[i].draw ();
   }
   if ( millis() > timerCorners) {
-    timerCorners = millis() + 20000;
+    timerCorners = millis() + 15000;
     toCorners = !toCorners;
   }
   if (grid.countPellets() == 0)  {
