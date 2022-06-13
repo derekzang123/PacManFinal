@@ -144,14 +144,14 @@ public class Ghost implements Entity{
       int gx = int(player.x); 
       int gy = int(player.y);
       if (!toCorners) {
-        if (type == 1 ) { // PINK = Get in front of pacman.
+        if (type == 1 ) {
           gx = int(player.x)+4*decodeX[player.direction];
           gy = int(player.y)+4*decodeY[player.direction];
           if ( player.direction == 3 ) { // Classic pink ghost behaviour.
             gx = int(player.x-80);
           }
         }
-        if ( type == 2 ) { // CYAN - Negative RED's positions, offset a couple of squares.
+        if ( type == 2 ) { 
           float mpx = player.x+2*decodeX[player.direction];
           float mpy = player.y+2*decodeY[player.direction];
           if (player.direction == 3) { // Classic cyan ghost behaviour.
@@ -160,7 +160,7 @@ public class Ghost implements Entity{
           gx = int(2*mpx - ghosts[0].x);
           gy = int(2*mpy - ghosts[0].y);
         }
-        if ( type == 3 ) { // ORANGE - Get close, then back off.
+        if ( type == 3 ) { 
           if (dist(player.x, player.y, x, y) < 160) {
             gx = 0;
             gy = height;
