@@ -53,11 +53,16 @@ void keyPressed() {
   if (key == 'r' ) {
     gameReset();
   }
-  if (key == 'l') {
-    gameReset();
-    grid.loadGameBoard(levels.get(level + 1));
-  }
-   
+  if (key == 'a') {
+      level --;
+      grid.loadGameBoard(levels.get(level));
+      gameReset();
+    }
+  if (key == 'd') {
+      level ++;
+      grid.loadGameBoard(levels.get(level));
+      gameReset();
+   }
 }
 
 void mousePressed() {

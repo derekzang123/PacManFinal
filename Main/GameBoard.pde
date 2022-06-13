@@ -122,7 +122,7 @@ public class GameBoard {
   void countPellets () {
     for (int j = 0; j < 30; j ++) {
       for (int i = 0; i < 30; i ++) {
-        if ((data[j][i].equals("3") || data[j][i].equals("1"))) {
+        if ((data[j][i].equals("3") || data[j][i].equals("2"))) {
           pellets ++;
         }
       }

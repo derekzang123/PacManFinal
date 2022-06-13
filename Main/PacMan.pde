@@ -130,13 +130,15 @@ public class PacMan implements Entity {
   }
 
   void onKeyPressed() {
-    if ( key == 'd' ) 
-      direction=0;
-    if ( key == 's' )  
-      direction=1;
-    if ( key == 'a' )  
-      direction=2;
-    if ( key == 'w' )    
-      direction=3;
+    if ( key == CODED ) {
+      if ( keyCode == RIGHT ) 
+        direction=0;
+      if ( keyCode == DOWN )  
+        direction=1;
+      if ( keyCode == LEFT )  
+        direction=2;
+      if ( keyCode == UP )    
+        direction=3;
+    }
   }
 }
