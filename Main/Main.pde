@@ -53,6 +53,7 @@ void keyPressed() {
     gameReset();
   }
   if (key == 'l') {
+    gameReset();
     grid.loadGameBoard(levels.get(level + 1));
   }
    
