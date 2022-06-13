@@ -4,8 +4,8 @@ For my final project, I am going to implement Pac-Man in Processing. The rules a
 
 ## Prototype (Old)
 
-[PacMan Prototype](https://docs.google.com/document/d/1xaSTikDZCKU--RdFzY4QQBtQi3BaqcJQOtfI4waUovk/edit?usp=sharing](https://docs.google.com/document/d/1xaSTikDZCKU--RdFzY4QQBtQi3BaqcJQOtfI4waUovk/edit?usp=sharing)
+[PacMan Prototype](https://docs.google.com/document/d/1xaSTikDZCKU--RdFzY4QQBtQi3BaqcJQOtfI4waUovk/edit?usp=sharing/)
 
 ## Prototype (Updated)
 
-[PacMan Prototype](https://docs.google.com/document/d/1xaSTikDZCKU--RdFzY4QQBtQi3BaqcJQOtfI4waUovk/edit?usp=sharing](https://docs.google.com/document/d/1xaSTikDZCKU--RdFzY4QQBtQi3BaqcJQOtfI4waUovk/edit?usp=sharing)](https://docs.google.com/document/d/1tFENJMMc-JYdUTLWLbLLaIP200BlndF6zN4jRJGreq4/edit?usp=sharing)
+[PacMan Prototype](https://docs.google.com/document/d/1tFENJMMc-JYdUTLWLbLLaIP200BlndF6zN4jRJGreq4/edit?usp=sharing/)
