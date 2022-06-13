@@ -100,7 +100,6 @@ public class GameBoard {
         data[j][i] = level[j][i];
       }
     }
-    pellets = 0;
     countPellets();
   }
   
@@ -120,7 +119,8 @@ public class GameBoard {
     return false;
   }
  
-  void countPellets () {
+
+  int countPellets () {
     for (int j = 0; j < 30; j ++) {
       for (int i = 0; i < 30; i ++) {
         if ((data[j][i].equals("3") || data[j][i].equals("2"))) {
@@ -128,12 +128,43 @@ public class GameBoard {
         }
       }
     }
+    return pellets;
   }
   
+  void clearPellets () {
+    for (int j = 0; j < 30; j ++) {
+      for (int i = 0; i < 30; i ++) {
+        if ((data[j][i].equals("3") || data[j][i].equals("2"))) {
+          data[j][i] = "0";
+        }
+      }
+    }
+    pellets = 0;
+  }
+  
+  /*
   boolean isCompleted() {
     if (pellets == 0) {
       completed = true;
     }
     return completed;
   }
+  
+  
+  boolean isCompleted () {
+    for (int j = 0; j < 30; j ++) {
+      for (int i = 0; i < 30; i ++) {
+        if (!(data[j][i].equals("1"))) {
+          if (data[j][i].equals("0")) {
+            completed = true;
+          }
+        } else {
+          completed = false;
+          break;
+        }
+      }
+    }
+    return completed;
+  }
+  */
 }

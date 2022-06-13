@@ -16,7 +16,7 @@ void setup() {
   levels.add(level2);
   grid = new GameBoard();
   grid.loadGameBoard(levels.get(0));
-  grid.countPellets();
+  //grid.countPellets();
   player = new PacMan();
   ghosts = new Ghost[4];
   for (int i=0; i<ghosts.length; i++) {
@@ -36,7 +36,7 @@ void draw() {
     timerCorners = millis() + 20000;
     toCorners = !toCorners;
   }
-  if (grid.isCompleted())  {
+  if (grid.countPellets() == 0)  {
     try {
     level ++;
     grid.loadGameBoard(levels.get(level));
@@ -57,6 +57,9 @@ void keyPressed() {
   }
   if (key == 'r' ) {
     gameReset();
+  }
+  if (key == 'c') {
+    grid.clearPellets();
   }
   if (key == 'a') {
     try {
