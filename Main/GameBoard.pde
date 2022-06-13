@@ -70,7 +70,6 @@ public class GameBoard {
     if (data[j][i].equals("3")) {
       player.getEnergizer();
       player.score += 50;
-      pellets --;
     }
     data[j][i] = "0";
     player.score += 10;
@@ -101,6 +100,8 @@ public class GameBoard {
         data[j][i] = level[j][i];
       }
     }
+    pellets = 0;
+    countPellets();
   }
   
   boolean killAt (float ix, float iy) {
@@ -129,7 +130,10 @@ public class GameBoard {
     }
   }
   
-  int returnPellets () {
-    return pellets;
+  boolean isCompleted() {
+    if (pellets == 0) {
+      completed = true;
+    }
+    return completed;
   }
 }

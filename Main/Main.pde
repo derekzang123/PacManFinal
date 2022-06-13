@@ -13,15 +13,16 @@ void setup() {
   size(600, 600);
   levels.add(level0);
   levels.add(level1);
+  levels.add(level2);
   grid = new GameBoard();
   grid.loadGameBoard(levels.get(0));
+  grid.countPellets();
   player = new PacMan();
   ghosts = new Ghost[4];
   for (int i=0; i<ghosts.length; i++) {
     ghosts[i] = new Ghost(i);
   }
   timerCorners = millis() + 15000;
-  grid.countPellets();
 }
 
 void draw() {
@@ -34,6 +35,15 @@ void draw() {
   if ( millis() > timerCorners) {
     timerCorners = millis() + 20000;
     toCorners = !toCorners;
+  }
+  if (grid.isCompleted())  {
+    try {
+    level ++;
+    grid.loadGameBoard(levels.get(level));
+    gameReset();
+    } catch (IndexOutOfBoundsException e) {
+      println("no next level");
+    }
   }
 }
 
@@ -51,7 +61,7 @@ void keyPressed() {
   if (key == 'a') {
     try {
       level --;
-      grid.loadGameBoard(levels.get(level));
+      grid.loadGameBoard(levels.get(level%3));
       gameReset();
     } 
     catch (IndexOutOfBoundsException e) {
@@ -61,7 +71,7 @@ void keyPressed() {
   if (key == 'd') {
     try {
       level ++;
-      grid.loadGameBoard(levels.get(level));
+      grid.loadGameBoard(levels.get(level%3));
       gameReset();
     } 
     catch (IndexOutOfBoundsException e) {
