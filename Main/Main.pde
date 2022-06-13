@@ -16,7 +16,7 @@ void setup() {
   grid = new GameBoard();
   grid.loadGameBoard(levels.get(0));
   player = new PacMan();
-  ghosts = new Ghost[5];
+  ghosts = new Ghost[4];
   for (int i=0; i<ghosts.length; i++) {
     ghosts[i] = new Ghost(i);
   }
@@ -35,11 +35,6 @@ void draw() {
     timerCorners = millis() + 20000;
     toCorners = !toCorners;
   }
-  if (grid.pellets == 0) {
-    level ++;
-    grid.loadGameBoard(levels.get(level));
-    gameReset();
-  }
 }
 
 void keyPressed() {
@@ -54,15 +49,25 @@ void keyPressed() {
     gameReset();
   }
   if (key == 'a') {
+    try {
       level --;
       grid.loadGameBoard(levels.get(level));
       gameReset();
+    } 
+    catch (IndexOutOfBoundsException e) {
+      println("level not found");
     }
+  }
   if (key == 'd') {
+    try {
       level ++;
       grid.loadGameBoard(levels.get(level));
       gameReset();
-   }
+    } 
+    catch (IndexOutOfBoundsException e) {
+      println("level not found");
+    }
+  }
 }
 
 void mousePressed() {

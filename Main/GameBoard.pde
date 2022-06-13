@@ -5,7 +5,7 @@ public class GameBoard {
   
   String[][] data = new String[30][30];
   boolean completed = false;
-  int pellets = 0;
+  int pellets = 0; 
   
   GameBoard () {
     for (int j = 0; j < 30; j ++) {
@@ -118,7 +118,7 @@ public class GameBoard {
     }
     return false;
   }
-  
+ 
   void countPellets () {
     for (int j = 0; j < 30; j ++) {
       for (int i = 0; i < 30; i ++) {
@@ -127,5 +127,9 @@ public class GameBoard {
         }
       }
     }
+  }
+  
+  int returnPellets () {
+    return pellets;
   }
 }
