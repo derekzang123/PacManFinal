@@ -11,6 +11,7 @@ public class PacMan implements Entity {
   boolean isDead = false;
   int energizerCountdown;
   int score = 0;
+  int lives = 3;
 
   PacMan() {
     respawn();
@@ -66,7 +67,9 @@ public class PacMan implements Entity {
     isDead = true;
     mouthOpenMax = TWO_PI;
     mouthStep = .1;
+    lives --;
   }
+  
   void draw() {
     simulate();
     render();
