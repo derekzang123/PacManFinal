@@ -42,8 +42,11 @@ void draw() {
     level ++;
     grid.loadGameBoard(levels.get(level));
     gameReset();
+    if (level == 3 && grid.countPellets() == 0) {
+      println("GAME OVER");
+    }
     } catch (IndexOutOfBoundsException e) {
-      println("no next level");
+      println("GAME OVER");
     }
   }
   fill(255,255,255);
