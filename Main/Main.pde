@@ -21,6 +21,7 @@ void setup() {
     ghosts[i] = new Ghost(i);
   }
   timerCorners = millis() + 15000;
+  grid.countPellets();
 }
 
 void draw() {
@@ -34,7 +35,7 @@ void draw() {
     timerCorners = millis() + 20000;
     toCorners = !toCorners;
   }
-  if (grid.isCompleted()) {
+  if (grid.pellets == 0) {
     level ++;
     grid.loadGameBoard(levels.get(level));
     gameReset();

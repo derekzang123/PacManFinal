@@ -1,4 +1,4 @@
-public class PacMan implements Entity{
+public class PacMan implements Entity {
 
   float startX = 30;
   float startY = 30;
@@ -30,35 +30,35 @@ public class PacMan implements Entity{
   float getX() {
     return x;
   }
-  
+
   float getY() {
     return y;
   }
-  
+
   void setY (float y_) {
     y = y_;
   }
-  
+
   void setX (float x_) {
     x = x_;
   }
-  
+
   void setDirection (int direction_) {
     direction = direction_;
   }
-  
+
   void moveUp () {
     y -= dy;
   }
-  
+
   void moveDown() {
     y += dy;
   }
-  
+
   void moveLeft() {
     x -= dx;
   }
-  
+
   void moveRight() {
     x += dx;
   }
@@ -86,7 +86,7 @@ public class PacMan implements Entity{
       x -= dx;
     if (3==direction) 
       y -= dy;
-    if (grid.isWall(x-6,y) || grid.isWall(x,y-6) || grid.isWall(x+6,y) || grid.isWall(x,y+6)) {
+    if (grid.isWall(x-6, y) || grid.isWall(x, y-6) || grid.isWall(x+6, y) || grid.isWall(x, y+6)) {
       x = px;
       y = py;
     } else {
@@ -122,22 +122,21 @@ public class PacMan implements Entity{
     translate(x, y);
     rotate(HALF_PI*direction);
     stroke(0);
-    fill(255,255,0);
+    fill(255, 255, 0);
     ellipse(0, 0, 22, 22);
     fill(0);
     arc(0, 0, 22, 22, - mouthOpen, mouthOpen);
     popMatrix();
   }
+
   void onKeyPressed() {
-    if ( key == CODED ) {
-      if ( keyCode == RIGHT ) 
-        direction=0;
-      if ( keyCode == DOWN )  
-        direction=1;
-      if ( keyCode == LEFT )  
-        direction=2;
-      if ( keyCode == UP )    
-        direction=3;
-    }
+    if ( key == 'd' ) 
+      direction=0;
+    if ( key == 's' )  
+      direction=1;
+    if ( key == 'a' )  
+      direction=2;
+    if ( key == 'w' )    
+      direction=3;
   }
 }

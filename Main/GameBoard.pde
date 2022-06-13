@@ -4,7 +4,8 @@ import java.io.*;
 public class GameBoard {
   
   String[][] data = new String[30][30];
-  boolean completed = false;;
+  boolean completed = false;
+  int pellets = 0;
   
   GameBoard () {
     for (int j = 0; j < 30; j ++) {
@@ -69,9 +70,11 @@ public class GameBoard {
     if (data[j][i].equals("3")) {
       player.getEnergizer();
       player.score += 50;
+      pellets --;
     }
     data[j][i] = "0";
     player.score += 10;
+    pellets --;
   }
   
   void editGameBoard (int ix, int iy) {
@@ -116,19 +119,13 @@ public class GameBoard {
     return false;
   }
   
-  boolean isCompleted () {
+  void countPellets () {
     for (int j = 0; j < 30; j ++) {
       for (int i = 0; i < 30; i ++) {
-        if (!(data[j][i].equals("3"))) {
-          if (data[j][i].equals("0")) {
-            completed = true;
-          }
-        } else {
-          completed = false;
-          break;
+        if ((data[j][i].equals("3") || data[j][i].equals("1"))) {
+          pellets ++;
         }
       }
     }
-    return completed;
   }
 }
