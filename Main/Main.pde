@@ -24,7 +24,6 @@ void setup() {
     ghosts[i] = new Ghost(i);
   }
   timerCorners = millis() + 15000;
-  textSize(15);
 }
 
 void draw() {
@@ -47,14 +46,9 @@ void draw() {
       println("no next level");
     }
   }
-  if (player.lives == 0) {
-    player.score = 0;
-    level = 0;
-    grid.loadGameBoard(levels.get(level));
-    gameReset();
-  }
   fill(255,255,255);
   text("Score: " + str(player.score),20,32.5);
+  textSize(15);
 }
 
 void keyPressed() {

@@ -70,8 +70,10 @@ public class GameBoard {
       player.getEnergizer();
       player.score += 50;
     }
+    if (data[j][i].equals("2")) {
+      player.score += 10;
+    }
     data[j][i] = "0";
-    player.score += 10;
     pellets --;
   }
   
@@ -79,18 +81,6 @@ public class GameBoard {
     int i = int (ix/20);
     int j = int (iy/20);
     data[j][i] = str(int((data[j][i]) + 1) % 4);
-  }
-  
-  void saveGameBoard () {
-    String[] temp = new String[30];
-    for (int j = 0; j < 30; j ++) {
-      temp[j] = "";
-      for (int i = 0; i < 30; i ++) {
-        temp[j] += data[j][i];
-      }
-    }
-    saveStrings("world.dat",temp);
-    println("gameboard saved");
   }
   
   void loadGameBoard (String[][] level) {
