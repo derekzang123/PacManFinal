@@ -4,6 +4,7 @@ import java.io.*;
 public class GameBoard {
   
   String[][] data = new String[30][30];
+  boolean completed = false;;
   
   GameBoard () {
     for (int j = 0; j < 30; j ++) {
@@ -67,6 +68,7 @@ public class GameBoard {
     int j = int (iy/20);
     if (data[j][i].equals("3")) {
       player.getEnergizer();
+      player.score += 50;
     }
     data[j][i] = "0";
     player.score += 10;
@@ -105,6 +107,7 @@ public class GameBoard {
     int pj = int (player.y/20);
     if (i == pi && j == pj) {
       if (player.isEnergized) {
+        player.score += 200;
         return true;
       } else {
         player.die();
@@ -112,14 +115,20 @@ public class GameBoard {
     }
     return false;
   }
-  /*
-  void onKeyPressed () {
-    if (key == 'k') {
-      saveGameBoard();
+  
+  boolean isCompleted () {
+    for (int j = 0; j < 30; j ++) {
+      for (int i = 0; i < 30; i ++) {
+        if (!(data[j][i].equals("3"))) {
+          if (data[j][i].equals("0")) {
+            completed = true;
+          }
+        } else {
+          completed = false;
+          break;
+        }
+      }
     }
-    if (key == 'l') {
-      loadGameBoard();
-    }
+    return completed;
   }
-  */
 }

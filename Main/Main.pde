@@ -5,17 +5,22 @@ static boolean toCorners = false;
 static int timerCorners;
 static int[] decodeX = {22, 0, -22, 0, 0};
 static int[] decodeY = {0, 22, 0, -22, 0};
+ArrayList<String[][]>levels = new ArrayList<String[][]>();
+int level = 0;
+
 
 void setup() {
   size(600, 600);
+  levels.add(level0);
+  levels.add(level1);
   grid = new GameBoard();
-  grid.loadGameBoard(level1);
+  grid.loadGameBoard(levels.get(0));
   player = new PacMan();
   ghosts = new Ghost[5];
   for (int i=0; i<ghosts.length; i++) {
     ghosts[i] = new Ghost(i);
   }
-  timerCorners = millis() + 20000;
+  timerCorners = millis() + 15000;
 }
 
 void draw() {
@@ -29,20 +34,28 @@ void draw() {
     timerCorners = millis() + 20000;
     toCorners = !toCorners;
   }
+  if (grid.isCompleted()) {
+    level ++;
+    grid.loadGameBoard(levels.get(level));
+    gameReset();
+  }
 }
 
 void keyPressed() {
-  //grid.onKeyPressed();
   player.onKeyPressed();
-  if ( key == ' ') { 
+  if (key == ' ') { 
     toCorners = !toCorners;
   }
-  if ( key == 'e' ) {
+  if (key == 'e' ) {
     player.die();
   }
-  if ( key == 'r' ) {
+  if (key == 'r' ) {
     gameReset();
-   }
+  }
+  if (key == 'l') {
+    grid.loadGameBoard(levels.get(level + 1));
+  }
+   
 }
 
 void mousePressed() {
@@ -51,10 +64,6 @@ void mousePressed() {
 
 void gameReset() {
   player.die();
-  ghostsReset();
-}
-
-void ghostsReset() {
   for (int i=0; i<ghosts.length; i++)
     ghosts[i] = new Ghost (i);
 }
